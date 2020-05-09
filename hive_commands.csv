@@ -1,0 +1,4 @@
+To print Hive DB in cli 
+************
+set hive.cli.print.current.db=true
+************
