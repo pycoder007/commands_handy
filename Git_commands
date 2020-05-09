@@ -1,0 +1,199 @@
+Git and Github:
+
+
+
+Remote server.   ----> clone/pull ---> Local --------> index/staging Area.  ------> working copy |
+																								 |
+
+											|						|							 |
+	    |									|						|						checkout																		
+		|									|						|							 |
+	    |---< ---------------Push---------	|------commit---------<-|<------------------------Add				 
+
+
+
+
+Steps to add your github user name and email to git
+
+1) ---------------
+C02X866EJG5H:jenkins vsenthilnathan$ git config --global user.email "countdown123@gmail.com"
+C02X866EJG5H:jenkins vsenthilnathan$ git config --global user.name "pycoder007"
+----------------
+
+Commands:
+
+go to the location of folder/project in terminal
+
+# this will initialize the repository in the folder
+
+2) ------------------
+C02X866EJG5H:myfolder vsenthilnathan$ git init
+Initialized empty Git repository in /Users/vsenthilnathan/Desktop/Git/myfolder/.git/
+C02X866EJG5H:myfolder vsenthilnathan$
+------------------ 
+
+
+
+#to check the status of the folder 
+
+3) ------------------
+C02X866EJG5H:myfolder vsenthilnathan$ git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+C02X866EJG5H:myfolder vsenthilnathan$ 
+------------------
+C02X866EJG5H:myfolder vsenthilnathan$ touch test1.txt
+C02X866EJG5H:myfolder vsenthilnathan$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	test1.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+C02X866EJG5H:myfolder vsenthilnathan$ 
+------------------
+
+
+#to add the changes to staging below add command can be used
+
+4)-----------------------
+C02X866EJG5H:myfolder vsenthilnathan$ git add test1.txt
+C02X866EJG5H:myfolder vsenthilnathan$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	new file:   test1.txt
+
+C02X866EJG5H:myfolder vsenthilnathan$
+------------------------
+
+
+#to commit changes to local repo
+5)---------------------
+C02X866EJG5H:myfolder vsenthilnathan$ git commit -m "added test1.txt"
+[master (root-commit) 3e882b8] added test1.txt
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test1.txt
+C02X866EJG5H:myfolder vsenthilnathan$ 
+----------------------
+
+
+#to add to remote repository
+6)-------------------
+C02X866EJG5H:myfolder vsenthilnathan$ git remote add origin https://github.com/pycoder007/gittest.git
+C02X866EJG5H:myfolder vsenthilnathan$ 
+--------------------
+
+
+#git push to remote command
+7)---------------
+C02X866EJG5H:myfolder vsenthilnathan$ git push -u origin master
+Username for 'https://github.com': countdown123@gmail.com
+Password for 'https://countdown123@gmail.com@github.com': 
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (6/6), 447 bytes | 447.00 KiB/s, done.
+Total 6 (delta 0), reused 0 (delta 0)
+To https://github.com/pycoder007/gittest.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+C02X866EJG5H:myfolder vsenthilnathan$ 
+--------------------
+
+
+#Enable Command auto complete 
+----------
+1) curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+2) Add below to ~/.bassh_profile
+	if [ -f ~/.git-completion.bash ]; then
+  		. ~/.git-completion.bash
+	fi
+3) source ~/.bash_profile
+-----------
+
+
+#For enabling color:
+C02X866EJG5H:myfolder vsenthilnathan$ git config color.ui
+auto
+C02X866EJG5H:myfolder vsenthilnathan$ git config --global color.ui true
+C02X866EJG5H:myfolder vsenthilnathan$ 
+
+
+-----------------
+#Branches and merging
+_________________
+
+#create a branch
+------------------
+C02X866EJG5H:myfolder vsenthilnathan$ git branch myNewBranch
+-------------------
+#once created it needs to b e checked out to start working on that branch
+------------------
+C02X866EJG5H:myfolder vsenthilnathan$ git checkout myNewBranch 
+Switched to branch 'myNewBranch'
+-------------------
+#once you work on branch, then u need to add and commit status to the local branch and push it to Branch
+---------
+C02X866EJG5H:myfolder vsenthilnathan$ git add text2.txt
+C02X866EJG5H:myfolder vsenthilnathan$ git commit -m"added text2.txt"
+C02X866EJG5H:myfolder vsenthilnathan$ git push -u origin myNewBranch 
+-----------
+#once pushed then we need to merge, before that we need to checkout of the current branch to master
+--------
+C02X866EJG5H:myfolder vsenthilnathan$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+C02X866EJG5H:myfolder vsenthilnathan$ 
+----------
+#Then we have to merge the branch to master by below command
+-----------------	
+C02X866EJG5H:myfolder vsenthilnathan$ git merge myNewBranch 
+Updating ea9d4aa..d59c730
+Fast-forward
+ text2.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 text2.txt
+C02X866EJG5H:myfolder vsenthilnathan$
+---------------
+#then push the merged changes to master
+---------
+C02X866EJG5H:myfolder vsenthilnathan$ git push -u origin master
+----------
+#to delete branch(below command will delete branch only from local)
+--------
+C02X866EJG5H:myfolder vsenthilnathan$ git branch -d myNewBranch 
+Deleted branch myNewBranch (was d59c730).
+C02X866EJG5H:myfolder vsenthilnathan$
+------------
+#below command will delete from the remote
+--------
+C02X866EJG5H:myfolder vsenthilnathan$ git push origin --delete myNewBranch
+To https://github.com/pycoder007/gittest.git
+ - [deleted]         myNewBranch
+C02X866EJG5H:myfolder vsenthilnathan$ 
+----------
+
+
+#Git Merge vs Git Rebase
+
+
+
+
+
+
+
+
+
