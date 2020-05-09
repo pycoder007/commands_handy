@@ -2,3 +2,9 @@ To print Hive DB in cli
 ************
 set hive.cli.print.current.db=true
 ************
+
+
+To enforce where clause(partitioned filter) for a partitioned table , set strict mode
+************
+hive> set hive.mapred.mode=strict;
+************
