@@ -3,8 +3,44 @@ To print Hive DB in cli
 set hive.cli.print.current.db=true
 ************
 
+To enable headers in CLI
+************
+set hive.cli.print.header=true;
+************
+
 
 To enforce where clause(partitioned filter) for a partitioned table , set strict mode
 ************
 hive> set hive.mapred.mode=strict;
+************
+
+
+Dynamic Partition Inserts
+************
+set hive.exec.dynamic.partition = True #(False by default)
+
+set hive.exec.dynamic.partition.mode = nonstrict #(Strict by default, meaning expect atleast one partition to be static)
+
+set hive.exec.max.dynamic.partitions.pernode = 100 #(default 100 ,The maximum number of dynamic partitions that can be created by each mapper or reducer)
+
+set hive.exec.max.dynamic.partitions = 1000 #(Default)
+
+set hive.exec.max.created.files = 100000 #(default)
+
+
+To Improve performance of aggregation
+*************
+SET hive.map.aggr=true (performs toplevel agg before group by, bottleneck is require more memory)
+*************
+
+To Run queries in Local mode
+************
+set hive.exec.mode.local.auto=true;
+************
+
+To Enable map side join
+************
+set hive.auto.convert.join=true; #(this will cache the small table in memory and do join in map phase itself)
+
+set hive.mapjoin.smalltable.filesize=25000000 #(Optionally enable this to cap the small table size)
 ************
