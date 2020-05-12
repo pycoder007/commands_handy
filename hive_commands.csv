@@ -44,3 +44,8 @@ set hive.auto.convert.join=true; #(this will cache the small table in memory and
 
 set hive.mapjoin.smalltable.filesize=25000000 #(Optionally enable this to cap the small table size)
 ************
+
+To enforce bucketing
+************
+SET hive.enforce.bucketing = true;
+************
