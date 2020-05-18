@@ -49,3 +49,34 @@ To enforce bucketing
 ************
 SET hive.enforce.bucketing = true;
 ************
+
+To execute stages in parallel(optimization)
+************
+set hive.exec.parallel = true
+************
+
+To enable Speculative Execution (helps to identify slow task tracker)
+************
+set mapred.map.tasks.speculative.execution = True
+set mapred.reduce.tasks.speculative.execution = True
+set hive.mapred.reduce.tasks.speculative.execution = True
+************
+
+
+To View all default parameters set in hive
+*************
+hive> set;
+*************
+
+
+To set Intermediate compression between MR jobs
+*************
+set hive.exec.compress.intermediate = True
+*************
+
+
+To set Final output compression
+*************
+set hive.exec.compress.output = True
+set mapred.output.compression.codec = org.apache.hadoop.io.compress.GzipCodec
+*************
